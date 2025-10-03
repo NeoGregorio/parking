@@ -19,13 +19,12 @@ export default function PrivatePagesLayout({
   children: React.ReactNode;
 }>) {
   const context = useAuth();
-
-  if (!context) {
-    return <div>Error: Auth context not available</div>;
-  }
-
-  const { user, loading }: AuthContextType = context;
   const router = useRouter();
+
+  const { user, loading } = (context || {
+    user: null,
+    loading: true,
+  }) as AuthContextType;
 
   useEffect(() => {
     if (!loading && !user) {

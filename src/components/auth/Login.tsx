@@ -26,7 +26,7 @@ export default function Login() {
       toast.error("Please enter email and password");
     }
 
-    const { data, error } = await client.auth.signInWithPassword({
+    const { error } = await client.auth.signInWithPassword({
       email,
       password,
     });

@@ -10,11 +10,10 @@ export default function Home() {
   const context = useAuth();
   const router = useRouter();
 
-  if (!context) {
-    return <div>Error: Auth context not available</div>;
-  }
-
-  const { user, loading }: AuthContextType = context;
+  const { user, loading } = (context || {
+    user: null,
+    loading: true,
+  }) as AuthContextType;
 
   useEffect(() => {
     if (!loading && user) {
