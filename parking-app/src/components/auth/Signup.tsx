@@ -28,14 +28,19 @@ export default function Signup() {
 
     const { data, error } = await client.auth.signUp({ email, password });
 
-    console.log(data);
-    console.log(error);
+    if (data) {
+      // signup was successful
+      toast.success("Sign up successful! Please login now.");
+    }
+    if (error) {
+      toast.error("Sorry, we're unable to sign you up. Please try again.");
+    }
   };
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Signup</CardTitle>
+        <CardTitle>Sign Up</CardTitle>
         <CardDescription>Enter email and password to signup</CardDescription>
       </CardHeader>
       <form onSubmit={handleSignup}>
@@ -65,7 +70,7 @@ export default function Signup() {
         </CardContent>
         <CardFooter>
           <Button type="submit" className="w-full">
-            Sign Up
+            Sign Me Up!
           </Button>
         </CardFooter>
       </form>

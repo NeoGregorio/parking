@@ -1,14 +1,10 @@
 "use client";
 
 import useAuth from "@/hooks/useAuth";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { User } from "@supabase/supabase-js";
 import Auth from "@/components/auth/Auth";
-
-interface AuthContextType {
-  user: User | null;
-  loading: boolean;
-}
+import { AuthContextType } from "./(private)/layout";
 
 export default function Home() {
   const context = useAuth();
@@ -20,11 +16,12 @@ export default function Home() {
 
   const { user, loading }: AuthContextType = context;
 
-  if (!loading && user) {
-    // login - redirect to dashboard
-    router.push("/dashboard");
-    return null;
-  }
+  useEffect(() => {
+    if (!loading && user) {
+      // login - redirect to dashboard
+      router.push("/dashboard");
+    }
+  }, [user, loading]);
 
   // else if not logged in
   return <div className="">{loading ? <h1>Loading...</h1> : <Auth />}</div>;

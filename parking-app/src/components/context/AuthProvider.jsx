@@ -1,6 +1,6 @@
 "use client";
-import { createContext, useState, useEffect, ReactNode } from "react";
-import { User } from "@supabase/supabase-js";
+import { createContext, useState, useEffect } from "react";
+
 import client from "@/api/client";
 
 // Define the context type
